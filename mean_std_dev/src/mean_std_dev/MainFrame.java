@@ -74,8 +74,7 @@ public class MainFrame {
 				dialog.setVisible(true);
 				} catch (Exception e3) {
 					dialog2.setVisible(true);
-					tf.setText("");
-					
+					tf.setText("");					
 				}
 			}
 		});		
@@ -89,12 +88,10 @@ public class MainFrame {
 		panel1.add(textArea2);
 		panel2 = new JPanel();
 		panel3 = new JPanel();
-		panel3.add(label);
-		
+		panel3.add(label);		
 		
 		dialog2 = new JDialog(frame1, "Input Error");
-		dialog2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		
+		dialog2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);		
 		dialog2.setLocation(250,100);
 		dialog2.setLayout(new BorderLayout());
 		dialog2.add(panel3);
