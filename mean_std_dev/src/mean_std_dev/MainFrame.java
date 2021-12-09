@@ -9,6 +9,7 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -21,6 +22,11 @@ public class MainFrame {
 	private JTextField tf;
 	private JButton button;
 	private JLabel label;
+	double total=0;
+	double total2=0;
+	double tempDouble;
+	double avg = 0;
+	String temp = new String();
 	
 	public MainFrame() {
 		initialize();		
@@ -47,20 +53,27 @@ public class MainFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String values = tf.getText();
-				String[] arr = values.split(",");
-				double total=0;
-				double tempDouble;
-				double avg = 0;
-				String temp = new String();
+				String[] arr = values.split(",");				
+				
 				for (int i=0;i<arr.length; i++) {
 					temp = arr[i].trim();
 					tempDouble = Double.parseDouble(temp);
 					total = total + tempDouble;					
 				}
 				avg = total / arr.length;
+				for (int i=0;i<arr.length; i++) {
+					temp = arr[i].trim();
+					tempDouble = Double.parseDouble(temp);
+					total2 = total2 + Math.pow((tempDouble-avg), 2);			
+				}
+				Double stdDev = Math.sqrt(total2/arr.length);
+				
+				
 				tf.setText("");
 				String s=String.valueOf(avg);
-				label.setText("Mean: "+s);
+				String s2 = String.valueOf(stdDev);
+				JTextArea textArea = new JTextArea ("Mean: "+s+"\nStdDev: "+s2);
+				panel2.add(textArea);
 				dialog.setVisible(true);
 			}
 		});		
@@ -71,9 +84,11 @@ public class MainFrame {
 //		panel1.setBackground(new Color(31, 104, 150));
 		panel1.add(tf);
 		panel1.add(button);
+		JTextArea textArea2 = new JTextArea("Enter a list of numbers separated by commas.");
+		panel1.add(textArea2);
 		
 		panel2 = new JPanel();
-		panel2.add(label);
+		
 		
 		//dialog to display output
 		dialog = new JDialog(frame1, "Mean and Std Dev");
