@@ -22,9 +22,7 @@ public class MainFrame {
 	private JTextField tf;
 	private JButton button;
 	private JLabel label;
-	private JTextArea textArea = new JTextArea();
-	
-	
+	private JTextArea textArea = new JTextArea();	
 	
 	public MainFrame() {
 		initialize();		
@@ -40,11 +38,8 @@ public class MainFrame {
 		frame1.setLocation(450,100);
 		frame1.setLayout(new BorderLayout());
 		
-		tf = new JTextField(16);
-		
-		label = new JLabel();		
-		
-		
+		tf = new JTextField(16);		
+		label = new JLabel();				
 		
 		button = new JButton("Calculate");
 		button.addActionListener(new ActionListener() {
@@ -57,10 +52,8 @@ public class MainFrame {
 				double avg = 0;
 				String temp = new String();				
 				String values = tf.getText();
-				String[] arr = values.split(",");
-				
-				textArea.setText("");
-				
+				String[] arr = values.split(",");				
+								
 				for (int i=0;i<arr.length; i++) {
 					temp = arr[i].trim();
 					tempDouble = Double.parseDouble(temp);
